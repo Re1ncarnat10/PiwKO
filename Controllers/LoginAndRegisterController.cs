@@ -29,4 +29,23 @@ public class LoginAndRegisterController : ControllerBase
         }
         return BadRequest(result.Errors);
     }
+
+    [HttpPost("login")]
+    public async Task<IActionResult> Login([FromBody] LoginDto model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        try
+        {
+            var tokenDto = await _loginAndRegisterService.LoginUserAsync(model);
+            return Ok(tokenDto);
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            return Unauthorized(ex.Message);
+        }
+    }
 }
