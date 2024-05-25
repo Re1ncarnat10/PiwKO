@@ -1,13 +1,21 @@
 using System.Text;
+using PiwKO.Models;
+using PiwKO.Data;
+using PiwKO.Interfaces;
+using PiwKO.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using PiwKO.Models;
-using PiwKO.Data;
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<ILoginAndRegisterService, LoginAndRegisterService>();
+builder.Services.AddScoped<IAdminService, AdminService>();
+builder.Services.AddScoped<IMemberService, MemberService>();
+//builder.Services.AddScoped<IBeerService, BeerService>();
+//builder.Services.AddScoped<IUserBeerService, UserBeerService>();
 
 
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -48,32 +56,35 @@ builder.Services.AddAuthentication(options =>
         };
     });
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
-
 builder.Services.AddControllers();
-
-builder.Services.AddEndpointsApiExplorer();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var dbContext = services.GetRequiredService<AppDbContext>();
+    dbContext.Database.Migrate();
+    var loginAndRegisterService = services.GetRequiredService<ILoginAndRegisterService>();
+    await loginAndRegisterService.CreateRoles();
+    var userService = scope.ServiceProvider.GetRequiredService<IAdminService>();
+    await userService.InitializeAdminAsync();
+    var beerService = scope.ServiceProvider.GetRequiredService<IBeerService>();
+    //await beerService.InstantCreateBeersAsync();
+}
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.UseHttpsRedirection();
+app.MapControllers();
 
 app.Run();

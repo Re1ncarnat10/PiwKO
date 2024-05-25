@@ -3,7 +3,6 @@ using PiwKO.Dtos;
 
 namespace PiwKO.Interfaces;
 
-
 public interface ILoginAndRegisterService
 {
     Task CreateRoles();

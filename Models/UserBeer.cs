@@ -13,13 +13,13 @@ namespace PiwKO.Models
         public string UserId { get; set; }
 
         [ForeignKey("UserId")]
-        public virtual User User { get; set; }
+        public virtual User? User { get; set; }
 
         [Required]
         public int BeerId { get; set; }
 
         [ForeignKey("BeerId")]
-        public virtual Beer Beer { get; set; }
+        public virtual Beer? Beer { get; set; }
 
         public bool IsFavourite { get; set; }
         public int Score { get; set; }
