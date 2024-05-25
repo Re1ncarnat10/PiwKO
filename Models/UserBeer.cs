@@ -22,7 +22,8 @@ namespace PiwKO.Models
         public virtual Beer? Beer { get; set; }
 
         public bool IsFavourite { get; set; }
-        public int Score { get; set; }
+        [Range(0, 10)]
+        public int? Score { get; set; }
 
         public UserBeer(string userId, int beerId, bool isFavourite, int score)
         {
