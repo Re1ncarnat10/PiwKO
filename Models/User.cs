@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Identity;
 
 namespace PiwKO.Models;
 
-public class User : IdentityUser<int>
+public class User : IdentityUser
 {
-    public List<Piwo> Ulubione { get; set; }
+    public List<UserBeer> UserBeers { get; set; }
     
     public class Role : IdentityRole<int>
     {
