@@ -1,4 +1,4 @@
-﻿namespace PiwKO.Dtos;
+namespace PiwKO.Dtos;
 
 public class UserBeerDto
 {

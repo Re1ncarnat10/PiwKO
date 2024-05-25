@@ -18,6 +18,7 @@ builder.Services.AddScoped<IBeerService, BeerService>();
 builder.Services.AddScoped<IUserBeerService, UserBeerService>();
 
 
+
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
