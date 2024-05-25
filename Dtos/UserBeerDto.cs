@@ -6,5 +6,5 @@ public class UserBeerDto
     public string UserId { get; set; }
     public int BeerId { get; set; }
     public bool IsFavourite { get; set; }
-    public int Score { get; set; }
+    public int? Score { get; set; }
 }

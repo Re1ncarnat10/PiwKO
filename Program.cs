@@ -14,8 +14,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<ILoginAndRegisterService, LoginAndRegisterService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<IMemberService, MemberService>();
-//builder.Services.AddScoped<IBeerService, BeerService>();
-//builder.Services.AddScoped<IUserBeerService, UserBeerService>();
+builder.Services.AddScoped<IBeerService, BeerService>();
+builder.Services.AddScoped<IUserBeerService, UserBeerService>();
 
 
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -76,7 +76,6 @@ using (var scope = app.Services.CreateScope())
     var userService = scope.ServiceProvider.GetRequiredService<IAdminService>();
     await userService.InitializeAdminAsync();
     var beerService = scope.ServiceProvider.GetRequiredService<IBeerService>();
-    //await beerService.InstantCreateBeersAsync();
 }
 
 app.UseRouting();
