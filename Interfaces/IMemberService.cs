@@ -1,6 +1,10 @@
-﻿namespace PiwKO.Interfaces;
+﻿using Microsoft.AspNetCore.Identity;
+using PiwKO.Dtos;
 
-public class IMemberService
-{
-    
-}
+namespace PiwKO.Interfaces;
+
+    public interface IMemberService
+    {
+        Task<MemberDto> GetMemberInfoAsync(string userId);
+        Task<IdentityResult> UpdateMemberInfoAsync(string userId, MemberDto memberDto);
+    }

@@ -11,6 +11,13 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddScoped<ILoginAndRegisterService, LoginAndRegisterService>();
+builder.Services.AddScoped<IAdminService, AdminService>();
+builder.Services.AddScoped<IMemberService, MemberService>();
+//builder.Services.AddScoped<IBeerService, BeerService>();
+//builder.Services.AddScoped<IUserBeerService, UserBeerService>();
+
+
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -59,6 +66,18 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var dbContext = services.GetRequiredService<AppDbContext>();
+    dbContext.Database.Migrate();
+    var loginAndRegisterService = services.GetRequiredService<ILoginAndRegisterService>();
+    await loginAndRegisterService.CreateRoles();
+    var userService = scope.ServiceProvider.GetRequiredService<IAdminService>();
+    await userService.InitializeAdminAsync();
+    var beerService = scope.ServiceProvider.GetRequiredService<IBeerService>();
+    //await beerService.InstantCreateBeersAsync();
+}
 
 app.UseRouting();
 app.UseAuthentication();

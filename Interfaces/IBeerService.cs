@@ -1,6 +1,6 @@
 ﻿namespace PiwKO.Interfaces;
 
-public class IBeerService
+public interface IBeerService
 {
     
 }

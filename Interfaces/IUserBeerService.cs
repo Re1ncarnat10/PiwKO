@@ -1,6 +1,6 @@
 ﻿namespace PiwKO.Interfaces;
 
-public class IUserBeerService
+public interface IUserBeerService
 {
     
 }
