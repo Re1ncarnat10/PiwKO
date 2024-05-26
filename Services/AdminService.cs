@@ -162,6 +162,6 @@ public class AdminService : IAdminService
         }
 
         await _userManager.AddToRoleAsync(adminUser, "Admin");
-        await _userManager.AddToRoleAsync(adminUser, "User");
+        await _userManager.AddToRoleAsync(adminUser, "Member");
     }
 }

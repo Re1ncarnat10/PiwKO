@@ -25,7 +25,7 @@ namespace PiwKO.Services
 
         public async Task CreateRoles()
         {
-            string[] roleNames = { "Admin", "Customer" };
+            string[] roleNames = { "Admin", "Member" };
             foreach (var roleName in roleNames)
             {
                 var roleExist = await _roleManager.RoleExistsAsync(roleName);
@@ -57,7 +57,7 @@ namespace PiwKO.Services
                 return result;
             }
 
-            var roleResult = await _userManager.AddToRoleAsync(user, "Customer");
+            var roleResult = await _userManager.AddToRoleAsync(user, "Member");
             return !roleResult.Succeeded ? 
                 IdentityResult.Failed(new IdentityError { Description = "Failed to assign the user role." }) : IdentityResult.Success;
         }
