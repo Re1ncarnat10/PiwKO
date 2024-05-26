@@ -12,31 +12,42 @@ public class AdminService : IAdminService
 {
     private readonly UserManager<User> _userManager;
     private readonly AppDbContext _context;
+    private readonly ILogger<AdminService> _logger;
 
-    public AdminService(UserManager<User> userManager, AppDbContext context)
+    public AdminService(UserManager<User> userManager, AppDbContext context, ILogger<AdminService> logger)
     {
         _userManager = userManager;
         _context = context;
+        _logger = logger;
     }
-
     public async Task<BeerDto> CreateBeerAsync(BeerDto beerDto)
     {
-        var beer = new Beer
+        _logger.LogInformation("Tworzenie nowego piwa {Name}", beerDto.Name);
+        try
         {
-            Name = beerDto.Name,
-            Producer = beerDto.Producer,
-            Description = beerDto.Description,
-            Image = beerDto.Image,
-            Alcohol = beerDto.Alcohol,
-            Price = beerDto.Price
-        };
+            var beer = new Beer
+            {
+                Name = beerDto.Name,
+                Producer = beerDto.Producer,
+                Description = beerDto.Description,
+                Image = beerDto.Image,
+                Alcohol = beerDto.Alcohol,
+                Price = beerDto.Price
+            };
 
-        _context.Beers.Add(beer);
-        await _context.SaveChangesAsync();
+            _context.Beers.Add(beer);
+            await _context.SaveChangesAsync();
 
-        // Zaktualizuj beerDto z nowym ID i zwróć
-        beerDto.BeerId = beer.BeerId;
-        return beerDto;
+            // Zaktualizuj beerDto z nowym ID i zwróć
+            beerDto.BeerId = beer.BeerId;
+            _logger.LogInformation("Piwo {Name} zostało pomyślnie utworzone", beerDto.Name);
+            return beerDto;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Wystąpił błąd podczas tworzenia piwa {Name}", beerDto.Name);
+            throw;
+        }
     }
 
     public async Task<IEnumerable<BeerDto>> GetAllBeersAsync()

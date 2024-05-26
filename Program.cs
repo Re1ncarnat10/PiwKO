@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-
+using System.Text.RegularExpressions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,8 +16,6 @@ builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<IMemberService, MemberService>();
 builder.Services.AddScoped<IBeerService, BeerService>();
 builder.Services.AddScoped<IUserBeerService, UserBeerService>();
-
-
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -55,17 +53,21 @@ builder.Services.AddAuthentication(options =>
             ValidAudience = jwtSettings["Audience"],
             IssuerSigningKey = new SymmetricSecurityKey(key)
         };
+            options.Events = new JwtBearerEvents
+            {
+                OnAuthenticationFailed = context =>
+                {
+                    var logger = context.HttpContext.RequestServices.GetRequiredService<ILogger<Program>>();
+                    logger.LogError($"Authentication failed. Exception: {context.Exception.Message}");
+                    var sanitizedMessage = Regex.Replace(context.Exception.Message, @"[^\u0020-\u007E]", string.Empty);
+                    context.Response.Headers.Add("Authentication-Failed", sanitizedMessage);
+                    return Task.CompletedTask;
+                }
+        };
     });
-
 builder.Services.AddControllers();
 
 var app = builder.Build();
-
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Home/Error");
-    app.UseHsts();
-}
 
 using (var scope = app.Services.CreateScope())
 {
@@ -76,15 +78,13 @@ using (var scope = app.Services.CreateScope())
     await loginAndRegisterService.CreateRoles();
     var userService = scope.ServiceProvider.GetRequiredService<IAdminService>();
     await userService.InitializeAdminAsync();
-    var beerService = scope.ServiceProvider.GetRequiredService<IBeerService>();
 }
 
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.MapControllers();
 
 app.UseHttpsRedirection();
-app.MapControllers();
 
 app.Run();

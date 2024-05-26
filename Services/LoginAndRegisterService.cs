@@ -6,7 +6,6 @@ using Microsoft.IdentityModel.Tokens;
 using PiwKO.Dtos;
 using PiwKO.Models;
 using PiwKO.Interfaces;
-using Microsoft.EntityFrameworkCore;
 
 namespace PiwKO.Services
 {
@@ -16,7 +15,8 @@ namespace PiwKO.Services
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
 
-        public LoginAndRegisterService(RoleManager<IdentityRole> roleManager, UserManager<User> userManager, IConfiguration configuration)
+        public LoginAndRegisterService(RoleManager<IdentityRole> roleManager, UserManager<User> userManager,
+            IConfiguration configuration)
         {
             _roleManager = roleManager;
             _userManager = userManager;
@@ -41,13 +41,15 @@ namespace PiwKO.Services
             var userExists = await _userManager.FindByEmailAsync(registerDto.Email);
             if (userExists != null)
             {
-                return IdentityResult.Failed(new IdentityError { Description = "User with this email already exists." });
+                return IdentityResult.Failed(new IdentityError
+                    { Description = "User with this email already exists." });
             }
 
             var user = new User
             {
                 UserName = registerDto.Email,
-                Email = registerDto.Email
+                Email = registerDto.Email,
+                Name = registerDto.Name
             };
 
             var result = await _userManager.CreateAsync(user, registerDto.Password);
@@ -58,10 +60,10 @@ namespace PiwKO.Services
             }
 
             var roleResult = await _userManager.AddToRoleAsync(user, "Member");
-            return !roleResult.Succeeded ? 
-                IdentityResult.Failed(new IdentityError { Description = "Failed to assign the user role." }) : IdentityResult.Success;
+            return !roleResult.Succeeded
+                ? IdentityResult.Failed(new IdentityError { Description = "Failed to assign the user role." })
+                : IdentityResult.Success;
         }
-
         public async Task<TokenDto> LoginUserAsync(LoginDto loginDto)
         {
             var user = await _userManager.FindByEmailAsync(loginDto.Email);
@@ -71,7 +73,6 @@ namespace PiwKO.Services
             }
 
             var result = await _userManager.CheckPasswordAsync(user, loginDto.Password);
-
             if (!result)
             {
                 throw new UnauthorizedAccessException("Invalid credentials");
@@ -81,22 +82,29 @@ namespace PiwKO.Services
 
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, user.Id.ToString())
+                new Claim(JwtRegisteredClaimNames.Sub, user.Id),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(ClaimTypes.NameIdentifier, user.Id)
             };
 
             claims.AddRange(userRoles.Select(role => new Claim(ClaimTypes.Role, role)));
 
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
+            var jwtKey = _configuration["Jwt:Key"];
+            var key = Encoding.UTF8.GetBytes(jwtKey);
+
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.AddDays(7),
+                Expires = DateTime.UtcNow.AddMinutes(double.Parse(_configuration["Jwt:ExpiresInMinutes"])),
+                Issuer = _configuration["Jwt:Issuer"],
+                Audience = _configuration["Jwt:Audience"],
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            return new TokenDto { Token = tokenHandler.WriteToken(token) };
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var jwtToken = tokenHandler.CreateEncodedJwt(tokenDescriptor);
+
+            return new TokenDto { Token = jwtToken };
         }
     }
 }
