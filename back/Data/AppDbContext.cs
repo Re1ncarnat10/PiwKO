@@ -10,25 +10,25 @@ namespace PiwKO.Data
         {
         }
 
-        public DbSet<Beer> Beers { get; set; }
-        public DbSet<UserBeer> UserBeers { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<UserCourse> UserCourses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<UserBeer>()
-                .HasKey(ub => new { ub.UserId, ub.BeerId });
+            builder.Entity<UserCourse>()
+                .HasKey(ub => new { ub.UserId, ub.CourseId });
 
-            builder.Entity<UserBeer>()
+            builder.Entity<UserCourse>()
                 .HasOne(ub => ub.User)
-                .WithMany(u => u.UserBeers)
+                .WithMany(u => u.UserCourses)
                 .HasForeignKey(ub => ub.UserId);
 
-            builder.Entity<UserBeer>()
-                .HasOne(ub => ub.Beer)
-                .WithMany(b => b.UserBeers)
-                .HasForeignKey(ub => ub.BeerId);
+            builder.Entity<UserCourse>()
+                .HasOne(ub => ub.Course)
+                .WithMany(b => b.UserCourses)
+                .HasForeignKey(ub => ub.CourseId);
         }
     }
 }

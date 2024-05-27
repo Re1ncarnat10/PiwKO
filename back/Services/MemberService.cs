@@ -44,4 +44,15 @@ public class MemberService : IMemberService
 
         return await _userManager.UpdateAsync(user);
     }
+    public async Task AddFundsToWalletAsync(string userId, decimal amount)
+    {
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user == null)
+        {
+            throw new Exception("User not found");
+        }
+
+        user.Wallet += amount;
+        await _userManager.UpdateAsync(user);
+    }
 }

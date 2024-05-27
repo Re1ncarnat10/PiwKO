@@ -7,4 +7,5 @@ namespace PiwKO.Interfaces;
     {
         Task<MemberDto> GetMemberInfoAsync(string userId);
         Task<IdentityResult> UpdateMemberInfoAsync(string userId, MemberDto memberDto);
+        Task AddFundsToWalletAsync(string userId, decimal amount);
     }

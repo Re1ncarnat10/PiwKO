@@ -27,8 +27,8 @@ builder.Services.AddCors(options =>
 builder.Services.AddScoped<ILoginAndRegisterService, LoginAndRegisterService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<IMemberService, MemberService>();
-builder.Services.AddScoped<IBeerService, BeerService>();
-builder.Services.AddScoped<IUserBeerService, UserBeerService>();
+builder.Services.AddScoped<ICourseService, CourseService>();
+builder.Services.AddScoped<IUserCourseService, UserCourseService>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));

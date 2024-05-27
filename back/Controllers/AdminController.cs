@@ -18,38 +18,38 @@ public class AdminController : ControllerBase
         _adminService = adminService;
     }
 
-    [HttpPost("beers")]
-    public async Task<IActionResult> CreateBeer(BeerDto beerDto)
+    [HttpPost("courses")]
+    public async Task<IActionResult> CreateCourse(BoughtCourseDto courseDto)
     {
-        var createdBeer = await _adminService.CreateBeerAsync(beerDto);
-        return Ok(createdBeer);
+        var createdCourse = await _adminService.CreateCourseAsync(courseDto);
+        return Ok(createdCourse);
     }
 
-    [HttpGet("beers")]
-    public async Task<IActionResult> GetAllBeers()
+    [HttpGet("courses")]
+    public async Task<IActionResult> GetAllCourses()
     {
-        var beers = await _adminService.GetAllBeersAsync();
-        return Ok(beers);
+        var courses = await _adminService.GetAllCoursesAsync();
+        return Ok(courses);
     }
 
-    [HttpGet("beers/{id}")]
-    public async Task<IActionResult> GetBeerById(int id)
+    [HttpGet("courses/{id}")]
+    public async Task<IActionResult> GetCourseById(int id)
     {
-        var beer = await _adminService.GetBeerByIdAsync(id);
-        return Ok(beer);
+        var course = await _adminService.GetCourseByIdAsync(id);
+        return Ok(course);
     }
 
-    [HttpPut("beers/{id}")]
-    public async Task<IActionResult> UpdateBeer(int id, BeerDto beerDto)
+    [HttpPut("courses/{id}")]
+    public async Task<IActionResult> UpdateCourse(int id, BoughtCourseDto courseDto)
     {
-        await _adminService.UpdateBeerAsync(id, beerDto);
+        await _adminService.UpdateCourseAsync(id, courseDto);
         return Ok();
     }
 
-    [HttpDelete("beers/{id}")]
-    public async Task<IActionResult> DeleteBeer(int id)
+    [HttpDelete("courses/{id}")]
+    public async Task<IActionResult> DeleteCourse(int id)
     {
-        await _adminService.DeleteBeerAsync(id);
+        await _adminService.DeleteCourseAsync(id);
         return Ok();
     }
 
@@ -70,6 +70,12 @@ public class AdminController : ControllerBase
         }
 
         return BadRequest(result.Errors);
+    }
+    [HttpPut("users/{userId}/wallet")]
+    public async Task<IActionResult> UpdateUserWallet(string userId, decimal newBalance)
+    {
+        await _adminService.UpdateUserWalletAsync(userId, newBalance);
+        return Ok();
     }
 
     [HttpPost("initialize")]

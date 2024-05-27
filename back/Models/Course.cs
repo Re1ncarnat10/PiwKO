@@ -3,20 +3,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PiwKO.Models
 {
-    public class Beer
+    public class Course
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int BeerId { get; set; }
+        public int CourseId { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
-        public string Producer { get; set; }
         public string Description { get; set; }
         public string Image { get; set; }
         [Required]
-        public double Alcohol { get; set; }
-        public double Price { get; set; }
-        public List<UserBeer> UserBeers { get; set; }
+        public decimal Price { get; set; }
+        public string Content { get; set; }
+        public List<UserCourse> UserCourses { get; set; }
+        
     }
 }

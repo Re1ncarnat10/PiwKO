@@ -7,13 +7,14 @@ namespace PiwKO.Interfaces
 {
     public interface IAdminService
     {
-        Task<BeerDto> CreateBeerAsync(BeerDto beerDto);
-        Task<IEnumerable<BeerDto>> GetAllBeersAsync();
-        Task<BeerDto> GetBeerByIdAsync(int id);
-        Task UpdateBeerAsync(int id, BeerDto beerDto);
-        Task DeleteBeerAsync(int id);
+        Task<CourseDto> CreateCourseAsync(BoughtCourseDto courseDto);
+        Task<IEnumerable<CourseDto>> GetAllCoursesAsync();
+        Task<CourseDto> GetCourseByIdAsync(int id);
+        Task UpdateCourseAsync(int id, BoughtCourseDto courseDto);
+        Task DeleteCourseAsync(int id);
         Task<IEnumerable<UserDto>> GetAllUsersAsync();
         Task<IdentityResult> DeleteUserAsync(string userId);
+        Task UpdateUserWalletAsync(string userId, decimal newBalance);
         Task InitializeAdminAsync();
     }
 }

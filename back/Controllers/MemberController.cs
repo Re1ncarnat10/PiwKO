@@ -54,5 +54,16 @@ namespace PiwKO.Controllers
            }
            return BadRequest(result.Errors);
         }
+        [HttpPut("wallet/add")]
+        public async Task<IActionResult> AddFundsToWallet(decimal amount)
+        {
+            var userId = _userManager.GetUserId(User);
+            if (userId == null)
+            {
+                return Unauthorized("User is not logged in");
+            }
+            await _memberService.AddFundsToWalletAsync(userId, amount);
+            return Ok();
+        }
     }
 }

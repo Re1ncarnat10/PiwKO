@@ -49,7 +49,8 @@ namespace PiwKO.Services
             {
                 UserName = registerDto.Email,
                 Email = registerDto.Email,
-                Name = registerDto.Name
+                Name = registerDto.Name,
+                Wallet = 100
             };
 
             var result = await _userManager.CreateAsync(user, registerDto.Password);

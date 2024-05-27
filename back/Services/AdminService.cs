@@ -20,102 +20,98 @@ public class AdminService : IAdminService
         _context = context;
         _logger = logger;
     }
-    public async Task<BeerDto> CreateBeerAsync(BeerDto beerDto)
+    public async Task<CourseDto> CreateCourseAsync(BoughtCourseDto courseDto)
     {
-        _logger.LogInformation("Tworzenie nowego piwa {Name}", beerDto.Name);
+        _logger.LogInformation("Tworzenie nowego kursu {Name}", courseDto.Name);
         try
         {
-            var beer = new Beer
+            var course = new Course
             {
-                Name = beerDto.Name,
-                Producer = beerDto.Producer,
-                Description = beerDto.Description,
-                Image = beerDto.Image,
-                Alcohol = beerDto.Alcohol,
-                Price = beerDto.Price
+                Name = courseDto.Name,
+                Description = courseDto.Description,
+                Image = courseDto.Image,
+                Price = courseDto.Price,
+                Content = courseDto.Content,
             };
 
-            _context.Beers.Add(beer);
+            _context.Courses.Add(course);
             await _context.SaveChangesAsync();
 
-            // Zaktualizuj beerDto z nowym ID i zwróć
-            beerDto.BeerId = beer.BeerId;
-            _logger.LogInformation("Piwo {Name} zostało pomyślnie utworzone", beerDto.Name);
-            return beerDto;
+            
+            courseDto.CourseId = course.CourseId;
+            _logger.LogInformation("Kurs {Name} zostało pomyślnie utworzony", courseDto.Name);
+            return courseDto;
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Wystąpił błąd podczas tworzenia piwa {Name}", beerDto.Name);
+            _logger.LogError(ex, "Wystąpił błąd podczas tworzenia kursu {Name}", courseDto.Name);
             throw;
         }
     }
 
-    public async Task<IEnumerable<BeerDto>> GetAllBeersAsync()
+    public async Task<IEnumerable<CourseDto>> GetAllCoursesAsync()
     {
-        return await _context.Beers
-            .Select(b => new BeerDto
+        return await _context.Courses
+            .Select(c => new BoughtCourseDto
             {
-                BeerId = b.BeerId,
-                Name = b.Name,
-                Producer = b.Producer,
-                Description = b.Description,
-                Image = b.Image,
-                Alcohol = b.Alcohol,
-                Price = b.Price
+                CourseId = c.CourseId,
+                Name = c.Name,
+                Description = c.Description,
+                Image = c.Image,
+                Price = c.Price,
+                Content = c.Content
             })
             .ToListAsync();
     }
 
-    public async Task<BeerDto> GetBeerByIdAsync(int id)
+    public async Task<CourseDto> GetCourseByIdAsync(int id)
     {
-        var beer = await _context.Beers.FindAsync(id);
+        var course = await _context.Courses.FindAsync(id);
 
-        if (beer == null)
+        if (course == null)
         {
             return null;
         }
 
-        return new BeerDto
+        return new BoughtCourseDto
         {
-            BeerId = beer.BeerId,
-            Name = beer.Name,
-            Producer = beer.Producer,
-            Description = beer.Description,
-            Image = beer.Image,
-            Alcohol = beer.Alcohol,
-            Price = beer.Price
+            CourseId = course.CourseId,
+            Name = course.Name,
+            Description = course.Description,
+            Image = course.Image,
+            Price = course.Price,
+            Content = course.Content
         };
     }
 
-    public async Task UpdateBeerAsync(int id, BeerDto beerDto)
+    public async Task UpdateCourseAsync(int id, BoughtCourseDto courseDto)
     {
-        var beer = await _context.Beers.FindAsync(id);
+        var course = await _context.Courses.FindAsync(id);
 
-        if (beer == null)
+        if (course == null)
         {
             return;
         }
 
-        beer.Name = beerDto.Name;
-        beer.Producer = beerDto.Producer;
-        beer.Description = beerDto.Description;
-        beer.Image = beerDto.Image;
-        beer.Alcohol = beerDto.Alcohol;
-        beer.Price = beerDto.Price;
+        course.Name = courseDto.Name;
+        course.Description = courseDto.Description;
+        course.Image = courseDto.Image;
+        course.Price = courseDto.Price;
+        course.Content = courseDto.Content;
 
         await _context.SaveChangesAsync();
     }
 
-    public async Task DeleteBeerAsync(int id)
+    public async Task DeleteCourseAsync(int id)
     {
-        var beer = await _context.Beers.FindAsync(id);
+        var course = await _context.Courses.FindAsync(id);
 
-        if (beer == null)
+        if (course == null)
         {
             return;
         }
 
-        _context.Beers.Remove(beer);
+        _context.Courses.Remove(course);
         await _context.SaveChangesAsync();
     }
     public async Task<IEnumerable<UserDto>> GetAllUsersAsync()
@@ -131,6 +127,7 @@ public class AdminService : IAdminService
                 Id = user.Id,
                 Email = user.Email,
                 Name = user.Name,
+                Wallet = user.Wallet,
                 Roles = userRoles.ToList()
             });
         }
@@ -148,6 +145,17 @@ public class AdminService : IAdminService
 
         return await _userManager.DeleteAsync(user);
     }
+    public async Task UpdateUserWalletAsync(string userId, decimal newBalance)
+    {
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user == null)
+        {
+            throw new Exception("User not found");
+        }
+
+        user.Wallet = newBalance;
+        await _userManager.UpdateAsync(user);
+    }
 
     public async Task InitializeAdminAsync()
     {
@@ -164,6 +172,7 @@ public class AdminService : IAdminService
             UserName = adminEmail,
             Email = adminEmail,
             Name = "admin",
+            Wallet = 1000000,
         };
 
         var createUserResult = await _userManager.CreateAsync(adminUser, "Admin123!");

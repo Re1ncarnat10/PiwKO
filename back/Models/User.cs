@@ -8,7 +8,8 @@ namespace PiwKO.Models
     {
         [StringLength(30, ErrorMessage = "Name length can't be more than 30.")]
         public string Name { get; set; }
-        public ICollection<UserBeer> UserBeers { get; set; }
+        public decimal Wallet { get; set; }
+        public ICollection<UserCourse> UserCourses { get; set; }
 
         public User(string name)
         {
@@ -18,6 +19,7 @@ namespace PiwKO.Models
         public User()
         {
         }
+
     }
 }
 
