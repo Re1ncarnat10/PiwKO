@@ -81,7 +81,7 @@ header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 10px 0;
+        padding: 15px 0;
     }
 
     header a {
@@ -116,7 +116,63 @@ header {
             header .nav-links li:last-child {
                 margin-right: 0;
             }
+footer {
+    background-color: var(--primary);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
 
+footer .inner-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+footer a {
+    color: var(--white);
+    font-size: 1.25rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-bottom: 10px;
+}
+footer p {
+    color: var(--white);
+    font-size: 1.25rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-bottom: 10px;
+}
+
+footer a:hover {
+    opacity: 0.7;
+}
+
+footer .brand a {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+footer .nav-links {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+footer .nav-links li {
+    display: inline-block;
+    margin-right: 30px;
+}
+
+footer .nav-links li:last-child {
+    margin-right: 0;
+}
+footer .no-margin {
+    margin: 0;
+}
 /* Add Page */
 .add-content {
     padding: 50px 0;
@@ -136,8 +192,7 @@ header {
 
 .results {
     padding: 0;
-    margin: 0;
-    margin-top: 20px;
+    margin: 20px 0 0;
 }
 
     .results li {
@@ -185,16 +240,16 @@ header {
     }
 
 /* Movie Page */
-.movie-page {
+.beer-page {
     padding: 30px 0;
 }
 
-    .movie-page .header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 30px;
-    }
+.beer-page .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
 
 .count-pill {
     display: block;
@@ -206,24 +261,25 @@ header {
     color: var(--primary);
 }
 
-.movie-page .heading {
+
+.beer-page .heading {
     color: var(--primary);
     margin: 0;
 }
 
-.movie-grid {
+.beer-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 30px;
 }
 
 @media (min-width: 992px) {
-    .movie-grid {
+    .beer-grid {
         grid-template-columns: repeat(5, 1fr);
     }
 }
 
-.movie-card {
+.beer-card {
     width: 100%;
     border-radius: 5px;
     overflow: hidden;
@@ -232,42 +288,41 @@ header {
     display: block;
 }
 
-    .movie-card img {
-        width: 100%;
-        display: block;
-    }
+.beer-card img {
+    width: 100%;
+    display: block;
+}
 
-    .movie-card .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: 2px solid transparent;
-        transition: all 0.3s ease;
-    }
+.beer-card .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
 
-    .movie-card:hover .overlay {
-        border: 3px solid var(--secondary);
-    }
+.beer-card:hover .overlay {
+    border: 3px solid var(--secondary);
+}
 
-    .movie-card .inner-card-controls {
-        display: inline;
-        background-color: red;
-        position: absolute;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: rgba(0, 0, 0, 0.8);
-        border-radius: 5px;
-        padding: 3px;
-        opacity: 0;
-        transition: all 0.3s ease;
-    }
+.beer-card .inner-card-controls {
+    display: inline;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    padding: 3px;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
 
-    .movie-card:hover .inner-card-controls {
-        opacity: 1;
-    }
+.beer-card:hover .inner-card-controls {
+    opacity: 1;
+}
 
 .ctrl-btn {
     color: #fefefe;
@@ -279,16 +334,66 @@ header {
     margin: 0;
 }
 
-    .ctrl-btn:hover {
-        color: var(--secondary);
-        cursor: pointer;
-    }
+.ctrl-btn:hover {
+    color: var(--secondary);
+    cursor: pointer;
+}
 
-.movie-page .no-movies {
+.beer-page .no-beers {
     color: #c4c4c4;
     font-size: 3rem;
     text-align: center;
 }
 .no-margin {
     margin: 0;
+}
+.home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #f5f5f5;
+    color: #032541;
+    height: 80vh;
+    text-align: center;
+}
+
+.home h1 {
+    margin-bottom: 20px;
+}
+
+.home p {
+    max-width: 600px;
+    padding: 0 20px;
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.home .btn {
+    display: inline-block;
+    margin: 20px;
+    padding: 10px 20px;
+    background-color: #032541;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+
+}
+
+.home .btn:hover {
+    background-color: #1aa762; /* Change the hover color as needed */
+    opacity: 1;
+    cursor: pointer;
+}
+.login-container {
+    display: inline;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
 }
