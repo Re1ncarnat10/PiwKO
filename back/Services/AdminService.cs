@@ -59,7 +59,9 @@ public class AdminService : IAdminService
                 Description = c.Description,
                 Image = c.Image,
                 Price = c.Price,
-                Content = c.Content
+                Content = c.Content,
+                AverageRating = c.UserCourses.Where(uc => uc.Score.HasValue).Average(uc => uc.Score.Value),
+                RatingCount = c.UserCourses.Count(uc => uc.Score.HasValue)
             })
             .ToListAsync();
     }
@@ -80,7 +82,9 @@ public class AdminService : IAdminService
             Description = course.Description,
             Image = course.Image,
             Price = course.Price,
-            Content = course.Content
+            Content = course.Content,
+            AverageRating = course.UserCourses.Where(uc => uc.Score.HasValue).Average(uc => uc.Score.Value),
+            RatingCount = course.UserCourses.Count(uc => uc.Score.HasValue)
         };
     }
 
