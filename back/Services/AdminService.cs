@@ -32,6 +32,7 @@ public class AdminService : IAdminService
                 Image = courseDto.Image,
                 Price = courseDto.Price,
                 Content = courseDto.Content,
+                
             };
 
             _context.Courses.Add(course);
@@ -52,16 +53,15 @@ public class AdminService : IAdminService
     public async Task<IEnumerable<CourseDto>> GetAllCoursesAsync()
     {
         return await _context.Courses
-            .Select(c => new BoughtCourseDto
+            .Select(c => new CourseDto
             {
                 CourseId = c.CourseId,
                 Name = c.Name,
                 Description = c.Description,
                 Image = c.Image,
                 Price = c.Price,
-                Content = c.Content,
-                AverageRating = c.UserCourses.Where(uc => uc.Score.HasValue).Average(uc => uc.Score.Value),
-                RatingCount = c.UserCourses.Count(uc => uc.Score.HasValue)
+                AverageRating = c.UserCourses.Any(uc => uc.Score.HasValue) ? c.UserCourses.Average(uc => uc.Score.Value) : (double?)null,
+                RatingCount = c.UserCourses.Any(uc => uc.Score.HasValue) ? c.UserCourses.Count(uc => uc.Score.HasValue) : (int?)null
             })
             .ToListAsync();
     }
@@ -75,16 +75,15 @@ public class AdminService : IAdminService
             return null;
         }
 
-        return new BoughtCourseDto
+        return new CourseDto
         {
             CourseId = course.CourseId,
             Name = course.Name,
             Description = course.Description,
             Image = course.Image,
             Price = course.Price,
-            Content = course.Content,
-            AverageRating = course.UserCourses.Where(uc => uc.Score.HasValue).Average(uc => uc.Score.Value),
-            RatingCount = course.UserCourses.Count(uc => uc.Score.HasValue)
+            AverageRating = course.UserCourses.Any(uc => uc.Score.HasValue) ? course.UserCourses.Average(uc => uc.Score.Value) : (double?)null,
+            RatingCount = course.UserCourses.Any(uc => uc.Score.HasValue) ? course.UserCourses.Count(uc => uc.Score.HasValue) : (int?)null
         };
     }
 

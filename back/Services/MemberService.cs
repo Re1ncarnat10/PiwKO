@@ -27,6 +27,7 @@ public class MemberService : IMemberService
         {
             Name = user.Name,
             Email = user.Email,
+            Wallet = user.Wallet
             
         };
     }

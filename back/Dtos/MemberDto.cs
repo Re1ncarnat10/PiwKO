@@ -12,5 +12,6 @@ namespace PiwKO.Dtos
         [EmailAddress(ErrorMessage = "Invalid email format")]
         public string Email { get; set; }
         
+        public decimal Wallet { get; set; }
     }
 }
