@@ -21,7 +21,7 @@ namespace PiwKO.Controllers
             _userManager = userManager;
         }
         
-
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetMyAccount()
         {
@@ -34,7 +34,7 @@ namespace PiwKO.Controllers
             return Ok(memberDto);
             
         }
-
+        [Authorize]
         [HttpPut("update")]
         public async Task<IActionResult> UpdateMyAccount([FromBody] MemberDto memberDto)
         {
@@ -54,6 +54,7 @@ namespace PiwKO.Controllers
            }
            return BadRequest(result.Errors);
         }
+        [Authorize]
         [HttpPut("wallet/add")]
         public async Task<IActionResult> AddFundsToWallet(decimal amount)
         {
