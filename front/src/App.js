@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./lib/font-awesome/css/all.min.css";
 import { Header } from './Components/Header';
@@ -9,7 +9,8 @@ import Home from './Components/HomePage';
 import Login from "./Components/Login";
 import Register from "./Components/Register";
 import Admin from "./Components/Admin";
-import { checkAdminStatus } from './Components/api'; // Import checkAdminStatus
+import { checkAdminStatus } from './Components/api';
+import AccountDetails from "./Components/AcountDetails"; //
 
 function App() {
     const [isAdmin, setIsAdmin] = useState(false);
@@ -31,9 +32,10 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/my-account" element={<AccountDetails />} />
                 {isAdmin ? <Route path="/admin" element={<Admin />} /> : <Route path="/" element={<Home />} />}
             </Routes>
-            <Footer/>
+            <Footer/>s
         </Router>
     );
 }

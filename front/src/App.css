@@ -11,7 +11,8 @@ body {
     flex-direction: column;
     min-height: 100vh;
     font-family: "Source Sans Pro", sans-serif;
-    padding: 0;
+    padding-top: 60px; /* Add this line. Adjust the value according to the actual height of your header */
+    padding-bottom: 100px;
     margin: 0;
 
 }
@@ -80,6 +81,12 @@ input:focus {
 header {
     background-color: var(--primary);
     overflow: visible;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
 }
 
     header .inner-content {
@@ -165,8 +172,11 @@ header {
             }
 footer {
     background-color: var(--primary);
-    position: absolute;
+    position: fixed;
     bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
     width: 100%;
 }
 
@@ -454,4 +464,14 @@ footer .no-margin {
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
+}
+.card {
+    height: 500px; /* Adjust as needed */
+    width: 300px; /* Adjust as needed */
+}
+
+.card-img-top {
+    height: 200px; /* Adjust as needed */
+    width: 100%;
+    object-fit: cover;
 }
