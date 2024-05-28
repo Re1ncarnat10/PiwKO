@@ -8,6 +8,7 @@ import { Footer } from './Components/Footer';
 import Home from './Components/HomePage';
 import Login from "./Components/Login";
 import Register from "./Components/Register";
+import Admin from "./Components/Admin";
 function App() {
   return (
       <Router>
@@ -16,6 +17,7 @@ function App() {
               <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/admin" element={<Admin />} />
           </Routes>
           <Footer/>
       </Router>

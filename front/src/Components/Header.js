@@ -1,12 +1,16 @@
-import React, {useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
-import {getAccountDetails} from "./api";
+import { getAccountDetails, checkAdminStatus } from "./api";
+import { SideBar } from "./SideBar";
 
 export const Header = () => {
     const token = localStorage.getItem('token');
     const isLoggedIn = token !== null;
     const navigate = useNavigate();
-    const [username, setUsername] = useState(''); // Add this line
+    const [username, setUsername] = useState('');
+    const [selectedOption, setSelectedOption] = useState('');
+    const [isAdmin, setIsAdmin] = useState(false); // Add this line
+
     useEffect(() => {
         if (isLoggedIn) {
             getAccountDetails()
@@ -14,11 +18,26 @@ export const Header = () => {
                 .catch(error => console.error(error));
         }
     }, [isLoggedIn]);
+
+    useEffect(() => {
+        if (isLoggedIn) {
+            checkAdminStatus()
+                .then(isAdmin => setIsAdmin(isAdmin))
+                .catch(error => console.error(error));
+        }
+    }, [isLoggedIn]);
+
+    useEffect(() => {
+        if (selectedOption) {
+            navigate(selectedOption);
+        }
+    }, [selectedOption, navigate]);
+
     const handleLogout = () => {
         localStorage.removeItem('token');
-
         navigate('/');
     };
+
     return (
         <header>
             <div className="container">
@@ -31,10 +50,17 @@ export const Header = () => {
                             <>
                                 <li>
                                     <div className="user-info">
-                                        <p>Welcome {username}</p>
+                                        {isAdmin && (
+                                            <button onClick={() => navigate('/admin')} className="btn">
+                                                Admin Panel
+                                            </button>
+                                        )}
+                                        <p className="text">Welcome {username}</p>
                                         <button onClick={handleLogout} className="btn">
                                             Logout
                                         </button>
+                                        <SideBar setSelectedOption={setSelectedOption} />
+
                                     </div>
                                 </li>
                             </>
@@ -42,7 +68,7 @@ export const Header = () => {
                         {!isLoggedIn && (
                             <>
                                 <li>
-                                <Link to="/login">Login</Link>
+                                    <Link to="/login">Login</Link>
                                 </li>
 
                                 <li>
@@ -56,5 +82,3 @@ export const Header = () => {
         </header>
     );
 };
-
-

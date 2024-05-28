@@ -10,7 +10,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loginError, setLoginError] = useState(''); // Add this line
-    const registerSuccess = useLocation.state?.registerSuccess; // Get the registerSuccess state
+    const registerSuccess = useLocation().state?.registerSuccess; // Get the registerSuccess state
 
 
     const handleSubmit = async (e) => {
@@ -24,10 +24,10 @@ const Login = () => {
     };
     return (
         <div className="d-block container mt-5  pt-5 align-self-center ">
-            {registerSuccess && <div className="alert alert-success">{registerSuccess}</div>}
-            {loginError && <div className="alert alert-danger">{loginError}</div>}
             <div className="row justify-content-center align-items-center">
                 <div className="col-12 col-sm-8 col-md-6 m-auto">
+                    {registerSuccess && <div className="alert alert-success">{registerSuccess}</div>}
+                    {loginError && <div className="alert alert-danger">{loginError}</div>}
                     <div className="card">
                         <div className="card-header">Login</div>
                         <div className="card-body">

@@ -1,5 +1,4 @@
 const API_URL = 'https://localhost:7067'; // Replace with your server's URL
-const token = localStorage.getItem('token');
 export const login = async (email, password) => {
     try {
         const response = await fetch(`${API_URL}/login`, {
@@ -21,7 +20,7 @@ export const login = async (email, password) => {
         }
 
         const data = await response.json();
-        localStorage.setItem('token', data.token.result);
+        localStorage.setItem('token', data.token);
         return data;
     } catch (error) {
         console.error('Error logging in', error);
@@ -62,6 +61,8 @@ export const register = async (Name, Email, Password, ConfirmPassword) => {
     }
 };
 export const getAccountDetails = async () => {
+    const token = localStorage.getItem('token');
+
     try {
         const response = await fetch(`${API_URL}/my-account`, {
             method: 'GET',
@@ -77,11 +78,57 @@ export const getAccountDetails = async () => {
         }
 
         const responseText = await response.text();
-        console.log('Response text:', responseText); // Log the raw response text
-
-        return JSON.parse(responseText); // Parse the response text as JSON
+        return JSON.parse(responseText);
     } catch (error) {
         console.error('Error fetching account details', error);
+        throw error;
+    }
+};
+export const checkAdminStatus = async () => {
+    const token = localStorage.getItem('token');
+
+    try {
+        const response = await fetch(`${API_URL}/admin/initialize`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (!response.ok) {
+            // If the response is not ok (status code is not in the range 200-299), the user is not an admin
+            return false;
+        }
+
+        // If the response is ok, the user is an admin
+        return true;
+    } catch (error) {
+        console.error('Error checking admin status', error);
+        throw error;
+    }
+};
+export const addCourses = async (courseData) => {
+    const token = localStorage.getItem('token');
+
+    try {
+        const response = await fetch(`${API_URL}/admin/courses`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(courseData)
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Error adding course');
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error('Error adding course', error);
         throw error;
     }
 };
