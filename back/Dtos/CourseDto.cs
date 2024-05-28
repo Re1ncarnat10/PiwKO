@@ -7,6 +7,6 @@ public class CourseDto
     public string Description { get; set; }
     public string Image { get; set; }
     public decimal Price { get; set; }
-    public double AverageRating { get; set; }
-    public int RatingCount { get; set; }
+    public double? AverageRating { get; set; }
+    public int? RatingCount { get; set; }
 }
