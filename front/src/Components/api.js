@@ -132,10 +132,19 @@ export const addCourses = async (courseData) => {
     }
 };
 export async function fetchCourses() {
-    const response = await fetch('/api/Course');
+    const response = await fetch(`${API_URL}/api/course`);
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
     }
     const courses = await response.json();
     return courses;
+}
+
+export async function fetchCoursesById(courseId) {
+    const response = await fetch(`${API_URL}/api/course/${courseId}`);
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const course = await response.json();
+    return course;
 }

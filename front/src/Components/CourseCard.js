@@ -1,7 +1,7 @@
-import React, {  useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { fetchCourses } from './api';
 
-const CourseCard = ({ courseId }) => { // Add courseId prop
+const CourseCard = () => {
     const [courses, setCourses] = useState([]);
 
     useEffect(() => {
@@ -13,9 +13,13 @@ const CourseCard = ({ courseId }) => { // Add courseId prop
         getCourses();
     }, []);
 
+    if (!courses) {
+        return <div>Loading...</div>;
+    }
+
     return (
         <div className="row">
-            {courses.filter(course => course.courseId === courseId).map((course) => ( // Use courseId prop here
+            {courses.map(course => (
                 <div className="col-sm-4" key={course.courseId}>
                     <div className="card">
                         <img src={course.image} className="card-img-top" alt={course.name} />
