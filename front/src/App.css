@@ -7,9 +7,13 @@
 }
 
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     font-family: "Source Sans Pro", sans-serif;
     padding: 0;
     margin: 0;
+
 }
 
 .container {
@@ -399,6 +403,14 @@ footer .no-margin {
     color: #032541;
     height: 80vh;
     text-align: center;
+}
+.home .content-container {
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    width: 90%;
+    margin: auto;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .home h1 {

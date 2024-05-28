@@ -1,6 +1,6 @@
 import './App.css';
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./lib/font-awesome/css/all.min.css";
 import { Header } from './Components/Header';
@@ -9,19 +9,33 @@ import Home from './Components/HomePage';
 import Login from "./Components/Login";
 import Register from "./Components/Register";
 import Admin from "./Components/Admin";
+import { checkAdminStatus } from './Components/api'; // Import checkAdminStatus
+
 function App() {
-  return (
-      <Router>
-          <Header />
-          <Routes>
-              <Route path="/" element={<Home />} />
+    const [isAdmin, setIsAdmin] = useState(false);
+
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            checkAdminStatus()
+                .then(isAdmin => setIsAdmin(isAdmin))
+                .catch(error => console.error(error));
+        }
+    }, []);
+
+    return (
+        <Router>
+            <Header />
+            <Routes>
+                <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/admin" element={<Admin />} />
-          </Routes>
-          <Footer/>
-      </Router>
-  );
+                {isAdmin ? <Route path="/admin" element={<Admin />} /> : <Route path="/" element={<Home />} />}
+            </Routes>
+            <Footer/>
+        </Router>
+    );
 }
 
 export default App;

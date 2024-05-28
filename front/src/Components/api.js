@@ -104,7 +104,6 @@ export const checkAdminStatus = async () => {
         // If the response is ok, the user is an admin
         return true;
     } catch (error) {
-        console.error('Error checking admin status', error);
         throw error;
     }
 };
@@ -132,3 +131,11 @@ export const addCourses = async (courseData) => {
         throw error;
     }
 };
+export async function fetchCourses() {
+    const response = await fetch('/api/Course');
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const courses = await response.json();
+    return courses;
+}
