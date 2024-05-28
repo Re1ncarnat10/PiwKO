@@ -10,6 +10,7 @@ const Home = () => {
         <div className="home">
             <div className="container">
                 <div className="inner-content">
+                    {loginSuccess && <div className="alert alert-success">{loginSuccess}</div>}
                     <h1>Witaj w PiwKO!</h1>
                     <p>Welcome to the PiwKO app! Here you will find the best beers from around the world.
                         Register or log in to be able to rate beers, add them to your favorites,

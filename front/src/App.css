@@ -107,7 +107,21 @@ header {
         display: flex;
         align-items: center;
     }
+        header .nav-links .btn{
+            display: inline-block;
+            background-color: black;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
 
+        }
+
+        header .nav-links.btn:hover {
+            background-color: #1aa762;
+            opacity: 1;
+            cursor: pointer;
+        }
         header .nav-links li {
             display: inline-block;
             margin-right: 30px;
@@ -115,6 +129,11 @@ header {
 
             header .nav-links li:last-child {
                 margin-right: 0;
+            }
+            header .nav-links .user-info {
+                display: flex;
+                align-items: center;
+                gap: 10px;
             }
 footer {
     background-color: var(--primary);

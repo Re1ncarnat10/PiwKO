@@ -23,9 +23,9 @@ const Register = () => {
 
     return (
         <div className="d-block container mt-5  pt-5 align-self-center ">
-            {registerError && <div className="alert alert-danger">{registerError}</div>}
             <div className="row justify-content-center align-items-center">
                 <div className="col-12 col-sm-8 col-md-6 m-auto">
+                    {registerError && <div className="alert alert-danger">{registerError}</div>}
                     <div className="card">
                         <div className="card-header">Register</div>
                         <div className="card-body">

@@ -17,7 +17,7 @@ const Login = () => {
         e.preventDefault();
         try {
             const user = await login(email, password);
-
+            navigate('/', { state: { loginSuccess: 'Login successful. Welcome!' } });
         } catch (error) {
             setLoginError(error.message);
         }
@@ -35,7 +35,7 @@ const Login = () => {
                                 <div className="form-group">
                                     <label htmlFor="email">Email</label> {/* Change label to Email */}
                                     <input
-                                        type="email" // Change type to email
+                                        type="email"
                                         className="form-control"
                                         id="email" // Change id to email
                                         placeholder="Enter email" // Change placeholder to Enter email
