@@ -64,8 +64,8 @@ namespace PiwKO.Services
                     Image = uc.Course.Image,
                     Price = uc.Course.Price,
                     Content = uc.Course.Content,
-                    AverageRating = uc.Course.UserCourses.Where(uc => uc.Score.HasValue).Average(uc => uc.Score.Value),
-                    RatingCount = uc.Course.UserCourses.Count(uc => uc.Score.HasValue)
+                    AverageRating = uc.Course.UserCourses.Any(uc => uc.Score.HasValue) ? uc.Course.UserCourses.Average(uc => uc.Score.Value) : (double?)null,
+                    RatingCount = uc.Course.UserCourses.Any(uc => uc.Score.HasValue) ? uc.Course.UserCourses.Count(uc => uc.Score.HasValue) : (int?)null
                 })
                 .ToListAsync();
 
@@ -84,8 +84,8 @@ namespace PiwKO.Services
                     Image = uc.Course.Image,
                     Price = uc.Course.Price,
                     Content = uc.Course.Content,
-                    AverageRating = uc.Course.UserCourses.Where(uc => uc.Score.HasValue).Average(uc => uc.Score.Value),
-                    RatingCount = uc.Course.UserCourses.Count(uc => uc.Score.HasValue)
+                    AverageRating = uc.Course.UserCourses.Any(uc => uc.Score.HasValue) ? uc.Course.UserCourses.Average(uc => uc.Score.Value) : (double?)null,
+                    RatingCount = uc.Course.UserCourses.Any(uc => uc.Score.HasValue) ? uc.Course.UserCourses.Count(uc => uc.Score.HasValue) : (int?)null
                 })
                 .FirstOrDefaultAsync();
 
