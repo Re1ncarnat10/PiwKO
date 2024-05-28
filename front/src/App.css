@@ -409,8 +409,11 @@ footer .no-margin {
     border: 1px solid #ccc;
     width: 90%;
     margin: auto;
+    margin-top: 150px;
     padding: 20px;
     box-sizing: border-box;
+    max-height: calc(100vh - 120px); /* Adjust this value based on the actual heights of your header and footer */
+    overflow-y: auto;
 }
 
 .home h1 {

@@ -16,7 +16,7 @@ const Home = () => {
                     {loginSuccess && <div className="alert alert-success">{loginSuccess}</div>}
                     {isLoggedIn && (
                         <div className="content-container">
-                            <CourseCard courseId={1} /> {/* Use CourseCard with courseId 1 */}
+                            <CourseCard/> {/* Use CourseCard with courseId 1 */}
                         </div>
                     )}
                     {!isLoggedIn && (

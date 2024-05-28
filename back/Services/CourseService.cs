@@ -48,8 +48,9 @@ namespace PiwKO.Services
                 Description = course.Description,
                 Image = course.Image,
                 Price = course.Price,
-                AverageRating = course.UserCourses.Any(uc => uc.Score.HasValue) ? course.UserCourses.Average(uc => uc.Score.Value) : (double?)null,
-                RatingCount = course.UserCourses.Any(uc => uc.Score.HasValue) ? course.UserCourses.Count(uc => uc.Score.HasValue) : (int?)null
+                AverageRating = course.UserCourses?.Any(uc => uc.Score.HasValue) == true ? course.UserCourses.Average(uc => uc.Score.Value) : (double?)null,
+                RatingCount = course.UserCourses?.Any(uc => uc.Score.HasValue) == true ? course.UserCourses.Count(uc => uc.Score.HasValue) : (int?)null
+
             };
         }
         public async Task<IEnumerable<BoughtCourseDto>> GetAllBoughtCoursesAsync(string userId)
