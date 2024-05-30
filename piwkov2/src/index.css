@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+    html:has(.drawer-auto-gutter .drawer-toggle:checked){
+        scrollbar-gutter: auto;
+    }
+}
