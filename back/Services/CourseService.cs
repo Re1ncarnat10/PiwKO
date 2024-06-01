@@ -26,6 +26,7 @@ namespace PiwKO.Services
                     Description = c.Description,
                     Image = c.Image,
                     Price = c.Price,
+                    Content = c.Content,
                     AverageRating = c.UserCourses.Any(uc => uc.Score.HasValue) ? c.UserCourses.Average(uc => uc.Score.Value) : (double?)null,
                     RatingCount = c.UserCourses.Any(uc => uc.Score.HasValue) ? c.UserCourses.Count(uc => uc.Score.HasValue) : (int?)null
                 })
@@ -48,6 +49,7 @@ namespace PiwKO.Services
                 Description = course.Description,
                 Image = course.Image,
                 Price = course.Price,
+                Content = course.Content,
                 AverageRating = course.UserCourses?.Any(uc => uc.Score.HasValue) == true ? course.UserCourses.Average(uc => uc.Score.Value) : (double?)null,
                 RatingCount = course.UserCourses?.Any(uc => uc.Score.HasValue) == true ? course.UserCourses.Count(uc => uc.Score.HasValue) : (int?)null
 
@@ -103,6 +105,7 @@ namespace PiwKO.Services
                     Description = uc.Course.Description,
                     Image = uc.Course.Image,
                     Price = uc.Course.Price,
+                    Content = uc.Course.Content,
                     AverageRating = uc.Course.UserCourses.Where(uc => uc.Score.HasValue).Average(uc => uc.Score.Value),
                     RatingCount = uc.Course.UserCourses.Count(uc => uc.Score.HasValue)
                 })

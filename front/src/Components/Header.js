@@ -50,11 +50,7 @@ export const Header = () => {
                             <>
                                 <li>
                                     <div className="user-info">
-                                        {isAdmin && (
-                                            <button onClick={() => navigate('/admin')} className="btn">
-                                                Admin Panel
-                                            </button>
-                                        )}
+
                                         <p className="text">Welcome {username}</p>
                                         <button onClick={handleLogout} className="btn">
                                             Logout

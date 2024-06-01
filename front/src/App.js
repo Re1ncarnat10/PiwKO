@@ -35,7 +35,7 @@ function App() {
                 <Route path="/my-account" element={<AccountDetails />} />
                 {isAdmin ? <Route path="/admin" element={<Admin />} /> : <Route path="/" element={<Home />} />}
             </Routes>
-            <Footer/>s
+            <Footer/>
         </Router>
     );
 }

@@ -2,11 +2,12 @@ import React from "react";
 
 export const Footer = () => {
     return (
-        <footer  className="footer items-center p-4 bg-neutral text-neutral-content  w-full">
+        <footer className="footer items-center p-4 bg-neutral text-neutral-content w-full sticky bottom-0">
             <aside className="items-center grid-flow-col">
-                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 256 256" className="fill-current">
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 256 256"
+                     className="fill-current">
                     <path
-                          d="M208 20H72a36 36 0 0 0-36 36v168a12 12 0 0 0 12 12h144a12 12 0 0 0 0-24H60v-4a12 12 0 0 1 12-12h136a12 12 0 0 0 12-12V32a12 12 0 0 0-12-12m-88 24h36v59l-10.51-8.41a12 12 0 0 0-15 0L120 103Zm76 128H72a35.6 35.6 0 0 0-12 2.06V56a12 12 0 0 1 12-12h24v84a12 12 0 0 0 19.5 9.37l22.49-18l22.51 18A12 12 0 0 0 180 128V44h16Z"/>
+                        d="M208 20H72a36 36 0 0 0-36 36v168a12 12 0 0 0 12 12h144a12 12 0 0 0 0-24H60v-4a12 12 0 0 1 12-12h136a12 12 0 0 0 12-12V32a12 12 0 0 0-12-12m-88 24h36v59l-10.51-8.41a12 12 0 0 0-15 0L120 103Zm76 128H72a35.6 35.6 0 0 0-12 2.06V56a12 12 0 0 1 12-12h24v84a12 12 0 0 0 19.5 9.37l22.49-18l22.51 18A12 12 0 0 0 180 128V44h16Z"/>
                 </svg>
                 <p>Copyright © 2024 - All right reserved</p>
             </aside>

@@ -2,14 +2,14 @@ import React from 'react';
 
 export const Sidebar = () => {
     return (
-        <div className="drawer drawer-auto-gutter drawer-end">
+        <div className="drawer drawer-auto-gutter drawer-end overflow-hidden fixed z-50">
             <input id="my-drawer" type="checkbox" className="drawer-toggle"/>
             <div className="drawer-side drawer-side-sticky">
                 <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
                 <ul className="menu p-4 w-50 min-h-full bg-base-200 text-base-content">
                     {/* Sidebar content here */}
                     <li className="flex-row row-span-full">
-                        <a>
+                        <a href="/my-account">
                             <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24">
                                 <path fill="currentColor"
                                       d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6m7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58z"/>
@@ -18,7 +18,7 @@ export const Sidebar = () => {
                         </a>
                     </li>
                     <li className="flex-row row-span-full">
-                        <a>
+                        <a href="/my-wallet">
                             <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="36" height="36"
                                  viewBox="0 0 24 24">
                                 <path
@@ -29,7 +29,7 @@ export const Sidebar = () => {
                         </a>
                     </li>
                     <li className="flex-row row-span-full">
-                        <a>
+                        <a href="/my-courses">
                             <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 256 256"
                                  className="fill-current">
                                 <path
@@ -39,7 +39,7 @@ export const Sidebar = () => {
                         </a>
                     </li>
                     <li className="flex-row row-span-full">
-                        <a>
+                        <a href="/favorite">
                             <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24">
                                 <path fill="currentColor"
                                       d="m12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5C2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54z"/>

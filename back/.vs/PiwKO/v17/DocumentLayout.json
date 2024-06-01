@@ -3,28 +3,40 @@
   "WorkspaceRootPath": "D:\\REpos\\PiwKO\\back\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{FE71121E-7858-4A3D-B584-59F17092A905}|PiwKO.csproj|d:\\repos\\piwko\\back\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE71121E-7858-4A3D-B584-59F17092A905}|PiwKO.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE71121E-7858-4A3D-B584-59F17092A905}|PiwKO.csproj|d:\\repos\\piwko\\back\\services\\usercourseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE71121E-7858-4A3D-B584-59F17092A905}|PiwKO.csproj|solutionrelative:services\\usercourseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE71121E-7858-4A3D-B584-59F17092A905}|PiwKO.csproj|d:\\repos\\piwko\\back\\models\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE71121E-7858-4A3D-B584-59F17092A905}|PiwKO.csproj|solutionrelative:models\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FE71121E-7858-4A3D-B584-59F17092A905}|PiwKO.csproj|d:\\repos\\piwko\\back\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{FE71121E-7858-4A3D-B584-59F17092A905}|PiwKO.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FE71121E-7858-4A3D-B584-59F17092A905}|PiwKO.csproj|d:\\repos\\piwko\\back\\services\\courseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE71121E-7858-4A3D-B584-59F17092A905}|PiwKO.csproj|solutionrelative:services\\courseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FE71121E-7858-4A3D-B584-59F17092A905}|PiwKO.csproj|d:\\repos\\piwko\\back\\dtos\\coursedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE71121E-7858-4A3D-B584-59F17092A905}|PiwKO.csproj|solutionrelative:dtos\\coursedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FE71121E-7858-4A3D-B584-59F17092A905}|PiwKO.csproj|d:\\repos\\piwko\\back\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{FE71121E-7858-4A3D-B584-59F17092A905}|PiwKO.csproj|solutionrelative:appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{FE71121E-7858-4A3D-B584-59F17092A905}|PiwKO.csproj|d:\\repos\\piwko\\back\\services\\courseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE71121E-7858-4A3D-B584-59F17092A905}|PiwKO.csproj|solutionrelative:services\\courseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE71121E-7858-4A3D-B584-59F17092A905}|PiwKO.csproj|d:\\repos\\piwko\\back\\dtos\\boughtcoursedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE71121E-7858-4A3D-B584-59F17092A905}|PiwKO.csproj|solutionrelative:dtos\\boughtcoursedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FE71121E-7858-4A3D-B584-59F17092A905}|PiwKO.csproj|d:\\repos\\piwko\\back\\services\\adminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FE71121E-7858-4A3D-B584-59F17092A905}|PiwKO.csproj|solutionrelative:services\\adminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FE71121E-7858-4A3D-B584-59F17092A905}|PiwKO.csproj|d:\\repos\\piwko\\back\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE71121E-7858-4A3D-B584-59F17092A905}|PiwKO.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FE71121E-7858-4A3D-B584-59F17092A905}|PiwKO.csproj|d:\\repos\\piwko\\back\\dtos\\coursedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE71121E-7858-4A3D-B584-59F17092A905}|PiwKO.csproj|solutionrelative:dtos\\coursedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FE71121E-7858-4A3D-B584-59F17092A905}|PiwKO.csproj|d:\\repos\\piwko\\back\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -46,15 +58,23 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 9,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "BoughtCourseDto.cs",
+              "DocumentMoniker": "D:\\REpos\\PiwKO\\back\\Dtos\\BoughtCourseDto.cs",
+              "RelativeDocumentMoniker": "Dtos\\BoughtCourseDto.cs",
+              "ToolTip": "D:\\REpos\\PiwKO\\back\\Dtos\\BoughtCourseDto.cs",
+              "RelativeToolTip": "Dtos\\BoughtCourseDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T13:27:28.851Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 8,
               "Title": "CourseDto.cs",
               "DocumentMoniker": "D:\\REpos\\PiwKO\\back\\Dtos\\CourseDto.cs",
               "RelativeDocumentMoniker": "Dtos\\CourseDto.cs",
@@ -62,38 +82,35 @@
               "RelativeToolTip": "Dtos\\CourseDto.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T12:18:39.781Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-28T12:18:39.781Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "AdminService.cs",
               "DocumentMoniker": "D:\\REpos\\PiwKO\\back\\Services\\AdminService.cs",
               "RelativeDocumentMoniker": "Services\\AdminService.cs",
               "ToolTip": "D:\\REpos\\PiwKO\\back\\Services\\AdminService.cs",
               "RelativeToolTip": "Services\\AdminService.cs",
-              "ViewState": "AQIAACQAAAAAAAAAAAAowEEAAAAbAAAA",
+              "ViewState": "AQIAABMAAAAAAAAAAAAgwCoAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T12:13:15.196Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-28T12:13:15.196Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "CourseService.cs",
               "DocumentMoniker": "D:\\REpos\\PiwKO\\back\\Services\\CourseService.cs",
               "RelativeDocumentMoniker": "Services\\CourseService.cs",
               "ToolTip": "D:\\REpos\\PiwKO\\back\\Services\\CourseService.cs",
               "RelativeToolTip": "Services\\CourseService.cs",
-              "ViewState": "AQIAABsAAAAAAAAAAAAowDUAAAAJAAAA",
+              "ViewState": "AQIAADUAAAAAAAAAAAAwwEUAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T11:40:44.013Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-28T11:40:44.013Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "D:\\REpos\\PiwKO\\back\\appsettings.Development.json",
               "RelativeDocumentMoniker": "appsettings.Development.json",
@@ -101,12 +118,11 @@
               "RelativeToolTip": "appsettings.Development.json",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-05-28T08:25:29.236Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-28T08:25:29.236Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\REpos\\PiwKO\\back\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -119,7 +135,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "LoginAndRegisterService.cs",
               "DocumentMoniker": "D:\\REpos\\PiwKO\\back\\Services\\LoginAndRegisterService.cs",
               "RelativeDocumentMoniker": "Services\\LoginAndRegisterService.cs",
@@ -131,7 +147,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "AdminController.cs",
               "DocumentMoniker": "D:\\REpos\\PiwKO\\back\\Controllers\\AdminController.cs",
               "RelativeDocumentMoniker": "Controllers\\AdminController.cs",
@@ -143,7 +159,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "launchSettings.json",
               "DocumentMoniker": "D:\\REpos\\PiwKO\\back\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "Properties\\launchSettings.json",
@@ -155,15 +171,42 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\REpos\\PiwKO\\back\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "D:\\REpos\\PiwKO\\back\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAAGoAAAAYAAAA",
+              "ViewState": "AQIAAAsAAAAAAAAAAADgvxkAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-27T12:47:13.421Z"
+              "WhenOpened": "2024-05-27T12:47:13.421Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Course.cs",
+              "DocumentMoniker": "D:\\REpos\\PiwKO\\back\\Models\\Course.cs",
+              "RelativeDocumentMoniker": "Models\\Course.cs",
+              "ToolTip": "D:\\REpos\\PiwKO\\back\\Models\\Course.cs",
+              "RelativeToolTip": "Models\\Course.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-01T20:37:35.875Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserCourseService.cs",
+              "DocumentMoniker": "D:\\REpos\\PiwKO\\back\\Services\\UserCourseService.cs",
+              "RelativeDocumentMoniker": "Services\\UserCourseService.cs",
+              "ToolTip": "D:\\REpos\\PiwKO\\back\\Services\\UserCourseService.cs",
+              "RelativeToolTip": "Services\\UserCourseService.cs",
+              "ViewState": "AQIAACEAAAAAAAAAAAAowAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-01T20:40:14.288Z",
+              "EditorCaption": ""
             }
           ]
         }
