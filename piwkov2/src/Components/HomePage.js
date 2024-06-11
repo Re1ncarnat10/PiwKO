@@ -12,6 +12,7 @@ const Home = () => {
     const loginSuccess = location.state?.loginSuccess;
     const [selectedFilter, setSelectedFilter] = useState('name');
     const [purchaseError, setPurchaseError] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false); // Add this line
 
     const [searchTerm, setSearchTerm] = useState('');
     const [filter, setFilter] = useState('name');
@@ -23,15 +24,18 @@ const Home = () => {
 
     useEffect(() => {
         if (loginSuccess && sessionStorage.getItem('alertShown') === 'false') {
-            setTimeout(() => {
-                const loginAlert = document.getElementById('loginAlert');
-                if (loginAlert) {
-                    loginAlert.style.display = 'none';
-                }
-            }, 3000);
+            setIsModalOpen(true); // Open the modal when the user logs in
             sessionStorage.setItem('alertShown', 'true');
+
+            // Close the modal after 3 seconds
+            setTimeout(() => {
+                setIsModalOpen(false);
+            }, 3000);
         }
     }, [loginSuccess]);
+    const closeModal = () => {
+        setIsModalOpen(false); // Close the modal
+    };
     useEffect(() => {
         fetchCourses()
             .then(courses => {
@@ -82,7 +86,7 @@ const Home = () => {
             )}
             {isLoggedIn && (
                 <div className="home flex flex-col items-center justify-center  h-256">
-                    {loginSuccess && sessionStorage.getItem('alertShown') === 'false' && <div id="loginAlert" className="alert alert-success max-w-64 max-h-16 mt-20">{loginSuccess}</div>}
+
                     {purchaseError && (
                         <div role="alert" className="alert alert-error mt-16 max-w-96">
                             <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
@@ -93,6 +97,19 @@ const Home = () => {
                     )}
 
                     <div className="search-container flex flex-col items-center w-full h-256 ">
+                        {isModalOpen && (
+                            <dialog id="my_modal_1" className="modal" open>
+                                <div className="modal-box">
+                                    <h3 className="font-bold text-lg">Hello!</h3>
+                                    <p className="py-4">Login successful. Welcome!</p>
+                                    <div className="modal-action">
+                                        <form method="dialog">
+                                            <button className="btn" onClick={closeModal}>Close</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </dialog>
+                        )}
                         <div className="join mt-8 w-5/6">
                             <div className="w-full">
                             <div>
@@ -124,6 +141,7 @@ const Home = () => {
                         </div>
                         <div className="container-with-course-cards w-5/6 flex flex-wrap justify-center  items-start auto-gutter
                     align-stretch  mb-8 p-8 border-2 border-gray-300 rounded-s overflow-y-auto  ">
+
                             {filteredCourses.map((course) => (
                                 <CourseCard key={course.courseId} course={course} theme="dark" setPurchaseError={setPurchaseError} />                            ))}
                     </div>

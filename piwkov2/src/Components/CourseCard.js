@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { purchaseCourse } from './api';
 
 const CourseCard = ({ course, setPurchaseError }) => {
+    const [isPurchaseModalOpen, setIsPurchaseModalOpen] = useState(false);
+
     const handlePurchase = async () => {
         try {
             const result = await purchaseCourse(course.courseId);
-            console.log(result); // Log the result for now, you can handle it as per your requirement
+            setIsPurchaseModalOpen(true); // Open the modal when the purchase is successful
         } catch (error) {
             console.error('Error purchasing course', error);
             if (error.message.includes('Insufficient funds')) {
@@ -16,6 +18,9 @@ const CourseCard = ({ course, setPurchaseError }) => {
                 setPurchaseError(error.message);
             }
         }
+    };
+    const closePurchaseModal = () => {
+        setIsPurchaseModalOpen(false);
     };
 
     if (!course) {
@@ -44,6 +49,19 @@ const CourseCard = ({ course, setPurchaseError }) => {
                         </div>
                     </div>
                 </div>
+            {isPurchaseModalOpen && (
+                <dialog id="purchase_modal" className="modal" open>
+                    <div className="modal-box">
+                        <h3 className="font-bold text-lg">Success!</h3>
+                        <p className="py-4">Your purchase was successful.</p>
+                        <div className="modal-action">
+                            <form method="dialog">
+                                <button className="btn" onClick={closePurchaseModal}>Close</button>
+                            </form>
+                        </div>
+                    </div>
+                </dialog>
+            )}
         </>
     );
 };

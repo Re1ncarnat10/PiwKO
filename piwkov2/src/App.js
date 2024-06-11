@@ -25,12 +25,11 @@ function App() {
         if (token) {
             checkAdminStatus()
                 .then(isAdmin => setIsAdmin(isAdmin))
-                .catch(error => console.error(error));
         }
     }, []);
     return (
         <Router>
-            <div className="flex flex-col min-h-screen">
+            <div className="flex flex-col ">
                 <Header/>
                 <Sidebar/>
                 <main className="flex-grow overflow-y-auto max-h-content">

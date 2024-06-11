@@ -35,7 +35,6 @@ export const Header = () => {
         if (isLoggedIn) {
             checkAdminStatus()
                 .then(isAdmin => setIsAdmin(isAdmin))
-                .catch(error => console.error(error));
         }
     }, [isLoggedIn]);
 
@@ -50,7 +49,7 @@ export const Header = () => {
         navigate('/');
     };
     return (
-        <header className="navbar bg-neutral text-neutral-content w-full sticky top-0 ">
+        <header className="navbar bg-neutral text-neutral-content w-full sticky top-0 relative z-[1000]">
             <div className="flex-1">
                 <a href="/" className="btn btn-ghost rounded-3xl text-xl">PiwKO</a>
                 <label className="swap swap-rotate pr-2">

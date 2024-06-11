@@ -6,6 +6,7 @@ const UserCourseCard = ({ course }) => {
     const [rating, setRating] = useState(0);
     const [message, setMessage] = useState(null);
     const [isFavourite, setIsFavourite] = useState(false); // Add this line
+    const [isRated, setIsRated] = useState(false);
 
     const handleShowContent = () => {
         navigate(`/course-content/${course.courseId}`);
@@ -20,6 +21,7 @@ const UserCourseCard = ({ course }) => {
         try {
             await rateCourse(course.courseId, rating);
             setMessage('Course rated successfully');
+            setIsRated(true); // Add this line
         } catch (error) {
             console.error('Error rating course', error);
             setMessage('Error rating course');
@@ -114,6 +116,19 @@ const UserCourseCard = ({ course }) => {
                                 </div>
                             </dialog>
                         )}
+                    {isRated && (
+                        <dialog id="my_modal_1" className="modal" open>
+                            <div className="modal-box">
+                                <h3 className="font-bold text-lg">Hello!</h3>
+                                <p className="py-4">Course rated successfully</p>
+                                <div className="modal-action">
+                                    <form method="dialog">
+                                        <button className="btn" onClick={() => setIsRated(false)}>Close</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </dialog>
+                    )}
 
                     <button className="btn btn-primary" onClick={handleShowContent}>Show content
                     </button>

@@ -1,4 +1,4 @@
-const API_URL = 'https://localhost:7067'; // Replace with your server's URL
+const API_URL = 'https://localhost:44350'; // Replace with your server's URL
 export const login = async (email, password) => {
     try {
         const response = await fetch(`${API_URL}/login`, {
@@ -97,13 +97,15 @@ export const checkAdminStatus = async () => {
         });
 
         if (!response.ok) {
-            // If the response is not ok (status code is not in the range 200-299), the user is not an admin
+            if (response.status !== 403) {
+                throw new Error('Error checking admin status');
+            }
             return false;
         }
-        // If the response is ok, the user is an admin
+
         return true;
     } catch (error) {
-        throw error;
+        // Do nothing with the error
     }
 };
 export const addCourses = async (courseData) => {

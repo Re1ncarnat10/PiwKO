@@ -8,7 +8,7 @@
     }
 }
 @layer components{
-    html:has(.auto-gutter){
+    html:has(.modal-open .modal-toggle:checked){
         scrollbar-gutter: auto;
     }
 }
@@ -17,6 +17,7 @@
     ::-webkit-scrollbar {
         display: none;
     }
+    scrollbar-gutter: auto;
 
     /* For Firefox */
     scrollbar-width: none;
@@ -30,9 +31,20 @@
     ::-webkit-scrollbar {
         display: none;
     }
+    scrollbar-gutter: auto;
+
 
     /* For Firefox */
     scrollbar-width: none;
 
     /* Enable scrolling */
-    overflow-y: auto;}
+    overflow-y: hidden;
+}
+*, ::before, ::after {
+    --tw-scroll-snap-strictness: none;
+
+}
+
+:root:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[open])) {
+    scrollbar-gutter: auto;
+}
